@@ -257,6 +257,11 @@
 		[self share];
 }
 
+- (void) authFailedWithError:(NSError *)error
+{
+	[self sendDidFailWithError:error];
+}
+
 + (void)logout
 {
 	/*

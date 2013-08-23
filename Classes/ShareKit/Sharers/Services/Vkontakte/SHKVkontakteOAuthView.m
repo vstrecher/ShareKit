@@ -142,6 +142,10 @@
 		[(SHKVkontakte *)delegate authComplete];
 		[[SHK currentHelper] hideCurrentViewControllerAnimated:YES];
 	} else if ([vkWebView.request.URL.absoluteString rangeOfString:@"error"].location != NSNotFound) {
+		NSError *error = [NSError errorWithDomain:@"VK" code:1 userInfo:@{
+				NSLocalizedDescriptionKey: SHKLocalizedString(@"Sorry, %@ did not accept your credentials. Please try again.", SHKLocalizedString(@"Vkontakte"))
+		}];
+		[(SHKVkontakte *)delegate authFailedWithError:error];
 		SHKLog(@"Error: %@", vkWebView.request.URL.absoluteString);
 		[[SHK currentHelper] hideCurrentViewControllerAnimated:YES];
 	}
@@ -151,6 +155,7 @@
 -(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
 	
 	SHKLog(@"vkWebView Error: %@", [error localizedDescription]);
+	[(SHKVkontakte *)delegate authFailedWithError:error];
 	[[SHK currentHelper] hideCurrentViewControllerAnimated:YES];
 }
 
