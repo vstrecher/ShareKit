@@ -33,6 +33,11 @@
 "Login Error" = "Ошибка входа";
 "Connecting..." = "Подключение...";
 
+"SMS" = "SMS";
+"Facebook" = "Facebook";
+"Twitter" = "Twitter";
+"Vkontakte" = "Вконтакте";
+
 "Shortening URL..." = "Сокращаю ссылку...";
 "Shorten URL Error" = "Ошибка сокращения ссылки";
 "We could not shorten the URL." = "Невозможно сократить ссылку.";
@@ -53,7 +58,7 @@
 
 "Sorry, %@ did not accept your credentials. Please try again." = "Извините, но %@ не принял ваши данные. Попробуйте, пожалуйста, еще раз.";
 "Sorry, %@ encountered an error. Please try again." = "Извините, у %@ возникла ошибка. Попробуйте, пожалуйста, еще раз.";
-"There was a problem saving to %@." = "Произошла ошибка при oтправке на %@.";
+"There was a problem saving to %@." = "Произошла ошибка при oтправке через %@.";
 
 "There was a problem authenticating your account." = "Произошла ошибка авторизации Вашего аккаунта.";
 "There was a problem saving your note." = "Произошла ошибка при oтправке Вашей заметки.";
@@ -61,12 +66,12 @@
 "Open in Safari" = "Открыть в Safari";
 "Attached: %@" = "Прикреплено: %@";
 
-"You must be online to login to %@" = "Вы должны быть подключены к Интернет чтобы войти на %@";
+"You must be online to login to %@" = "Требуется подключение к интернету, чтобы войти на %@";
 
 "Auto Share" = "Авто-отправка";
 "Enable auto share to skip this step in the future." = "Включите авто-отправку, чтобы пропустить это шаг в дальнейшем.";
 
-"You must be online in order to share with %@" = "Вы должны быть подключены к Интернет чтобы слать на %@";
+"You must be online in order to share with %@" = "Требуется подключение к интернету, чтобы поделиться через %@";
 "There was an error while sharing" = "Произошла ошибка при oтправке";
 
 "Could not authenticate you. Please relogin." = "Невозможно Вас аутентифицировать. Пожалуйста, войдите еще раз.";
