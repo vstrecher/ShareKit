@@ -220,6 +220,14 @@ BOOL SHKinit;
 
 - (void)hideCurrentViewControllerAnimated:(BOOL)animated
 {
+	// If a view is being presented, try to hide in a few moments to avoid “Attempt to dismiss from view controller...” warning
+	if (self.currentView.isBeingPresented) {
+		dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+			[self hideCurrentViewControllerAnimated:animated];
+		});
+		return;
+	}
+
 	if (self.isDismissingView)
 		return;
 	
