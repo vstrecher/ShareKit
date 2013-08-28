@@ -491,6 +491,7 @@
             NSError *error = nil;
             NSDictionary *res = [NSJSONSerialization JSONObjectWithData:request.data options:NSJSONReadingMutableContainers error:&error];
             NSString *errorMsg = [[res objectForKey:@"error"] objectForKey:@"error_msg"];
+	        int errorCode = [[[res objectForKey:@"error"] objectForKey:@"error_code"] integerValue];
             
             if([errorMsg isEqualToString:@"Captcha needed"])
             {
@@ -505,8 +506,13 @@
                 [[NSUserDefaults standardUserDefaults] synchronize];
                 
                 [self getCaptcha];
-            } else
-            {
+            } else if (errorCode == 5) {
+	            // user authorization failed
+	            SHKLog(@"User authorization failed: access_token was given to another ip address.");
+	            [[self class] flushAccessToken];
+	            [self share];
+            } else {
+	            SHKLog(@"Error sharing VK: %@", errorMsg);
                 [self sendDidFinish];
             }
         }
@@ -546,8 +552,13 @@
             if([errorMsg isEqualToString:@"Captcha needed"])
             {
                 return YES;
-            } else
-            {
+            } else if (errorCode.intValue == 5) {
+		        // user authorization failed
+	            SHKLog(@"Authorization error when sharing to VK: %@, errorCode: %@", errorMsg, errorCode);
+		        [[self class] flushAccessToken];
+				[self share];
+	        } else {
+	            SHKLog(@"Error sharing to VK: %@, errorCode: %@", errorMsg, errorCode);
                 NSDictionary *userInfo = [NSDictionary dictionaryWithObjectsAndKeys:
                                           errorMsg, NSLocalizedDescriptionKey,
                                           nil];
